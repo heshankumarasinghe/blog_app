@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../mixins/responsive_layout_mixin.dart';
+import '../widgets/no_preview_available_container.dart';
 
 class MainFeedContent extends StatelessWidget with ResponsiveLayoutMixin {
-  final String feedImageUrl;
+  final String? feedImageUrl;
   final String feedDescription;
   final int likesCount;
 
@@ -24,10 +25,12 @@ class MainFeedContent extends StatelessWidget with ResponsiveLayoutMixin {
         SizedBox(
           width: contentWidth,
           height: 300,
-          child: Image.network(
-            feedImageUrl,
-            fit: BoxFit.fill,
-          ),
+          child: feedImageUrl != null
+              ? Image.network(
+                  feedImageUrl!,
+                  fit: BoxFit.fill,
+                )
+              : const NoPreviewAvailableContainer(),
         ),
         const SizedBox(
           height: 10,

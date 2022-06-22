@@ -24,8 +24,14 @@ class RouteGenerator {
         );
 
       case Routes.toAdminGroupScreen:
+        final args = settings.arguments as Map<String, int>;
+
+        final groupId = args['groupId'];
+
         return MaterialPageRoute(
-          builder: (_) => const AdminGroupScreen(),
+          builder: (_) => AdminGroupScreen(
+            groupId: groupId as int,
+          ),
         );
 
       case Routes.toAddPostScreen:
